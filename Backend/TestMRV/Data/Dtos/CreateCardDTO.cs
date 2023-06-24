@@ -22,5 +22,6 @@ namespace TestMRV.Data.Dtos
         [Required(ErrorMessage = "Campo Price é obrigatório")]
         [Range(0.01, 1000000.00, ErrorMessage = "O preço deve estar entre 0,01 e 1.000.000,00")]
         public float Price { get; set; }
+
     }
 }

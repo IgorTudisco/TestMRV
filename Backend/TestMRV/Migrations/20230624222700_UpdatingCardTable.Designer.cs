@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TestMRV.Data;
 
@@ -10,9 +11,11 @@ using TestMRV.Data;
 namespace TestMRV.Migrations
 {
     [DbContext(typeof(CardContext))]
-    partial class CardContextModelSnapshot : ModelSnapshot
+    [Migration("20230624222700_UpdatingCardTable")]
+    partial class UpdatingCardTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

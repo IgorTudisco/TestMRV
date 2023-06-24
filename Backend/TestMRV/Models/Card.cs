@@ -9,8 +9,7 @@ namespace TestMRV.Models
         public int CardId { get; set; }
 
         [Required(ErrorMessage = "Campo FirstName é obrigatório")]
-        public string? FirstName { get; set; }
-        //public DateTime DateCreated { get; set; }
+        public string? FirstName { get; set; }        
 
         [Required(ErrorMessage = "Campo Suburb é obrigatório")]
         public string? Suburb { get; set; }
@@ -26,12 +25,11 @@ namespace TestMRV.Models
         [Range(0.01, 1000000.00, ErrorMessage = "O preço deve estar entre 0,01 e 1.000.000,00")]
         public float Price { get; set; }
 
-        //public bool Accept { get; set; } = false;
+        [Required(ErrorMessage = "Campo DateCreated é obrigatório")]
+        public string DateCreated { get; set; } = DateTime.Now.ToString("MMMM dd hh:mm");
 
-        //public Card(DateTime dateCreated)
-        //{
-        //    dateCreated = new DateTime.Now.ToString("h:mm tt");
-        //    DateCreated = createdDate;
-        //}
+        [Required(ErrorMessage = "Campo Accept é obrigatório")]
+        public bool Accept { get; set; } = false;
+
     }
 }

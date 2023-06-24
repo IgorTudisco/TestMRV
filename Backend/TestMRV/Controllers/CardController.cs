@@ -13,6 +13,7 @@ namespace TestMRV.Controllers
     public class CardController : Controller
     {
         private CardService _service;
+        DateTime _dateNow = DateTime.Now;
 
         public CardController(CardService service)
         {
@@ -77,7 +78,7 @@ namespace TestMRV.Controllers
             var card = _service.PutCard(id, cardDTO);
             if(card == null) return NotFound();
             return NoContent();
-        }        
+        }
 
         /// <summary>
         /// Atualiza um campo específico do card
