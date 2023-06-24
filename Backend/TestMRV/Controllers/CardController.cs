@@ -12,15 +12,11 @@ namespace TestMRV.Controllers
     [Route("[controller]")]
     public class CardController : Controller
     {
-        private CardContext _context;
-        private IMapper _mapper;
-        //private CardService _cardService;
+        private CardService _service;
 
-        public CardController(CardContext context, IMapper mapper, CardService cardService)
+        public CardController(CardService service)
         {
-            _context = context;
-            _mapper = mapper;
-            //_cardService = cardService;
+            _service = service;
         }
 
         /// <summary>
@@ -33,11 +29,8 @@ namespace TestMRV.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         public IActionResult AddCard([FromBody] CreateCardDTO cardDTO)
         {   
-            Card card = _mapper.Map<Card>(cardDTO);
-            _context.Cards.Add(card);
-            //_cardService.PriceDiscount(card);
-            _context.SaveChanges();
-            return CreatedAtAction(nameof(GetCartById), new {id = card.CardId}, card);
+            var card = _service.AddCard(cardDTO);
+            return CreatedAtAction(nameof(GetCardById), new {id = card.CardId}, card);
         }
 
         /// <summary>
@@ -51,7 +44,8 @@ namespace TestMRV.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public IEnumerable<ReadCardDTO> GetCards([FromQuery] int skip = 0, [FromQuery] int take = 10)
         {
-            return _mapper.Map<List<ReadCardDTO>>(_context.Cards.Skip(skip).Take(take));
+            var listCard = _service.GetCards(skip, take);
+            return listCard;
         }
 
         /// <summary>
@@ -64,9 +58,8 @@ namespace TestMRV.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult GetCardById(int id)
         {
-            var card = _context.Cards.FirstOrDefault(card => card.CardId == id);
-            if(card == null) return NotFound();
-            var cardDTO = _mapper.Map<ReadCardDTO>(card);
+            var cardDTO = _service.GetCardById(id);
+            if(cardDTO == null) return NotFound();
             return Ok(cardDTO);
         }
 
@@ -81,14 +74,10 @@ namespace TestMRV.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public IActionResult PutCard(int id, [FromBody] UpdateCardDTO cardDTO)
         {
-            var card = _context.Cards.FirstOrDefault(card => card.CardId == id);
+            var card = _service.PutCard(id, cardDTO);
             if(card == null) return NotFound();
-            _mapper.Map(cardDTO, card);
-            _context.SaveChanges();
             return NoContent();
-        }
-
-        
+        }        
 
         /// <summary>
         /// Atualiza um campo específico do card
@@ -101,10 +90,8 @@ namespace TestMRV.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public IActionResult PatchCard(int id, [FromBody] JsonPatchDocument<UpdateCardDTO> patch)
         {
-            var card = _context.Cards.FirstOrDefault(card => card.CardId == id);
-            if (card == null) return NotFound();
-
-            var cardUpdate = _mapper.Map<UpdateCardDTO>(card);
+            var cardUpdate = _service.PatchCard(id);
+            if (cardUpdate == null) return NotFound();
 
             patch.ApplyTo(cardUpdate, ModelState);
 
@@ -113,8 +100,7 @@ namespace TestMRV.Controllers
                 return ValidationProblem(ModelState);
             }
 
-            _mapper.Map(cardUpdate, card);
-            _context.SaveChanges();
+            _service.PatchCardSave(cardUpdate, id);
             return NoContent();
         }
 
@@ -128,10 +114,8 @@ namespace TestMRV.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public IActionResult DeleteCard(int id)
         {
-            var card = _context.Cards.FirstOrDefault(card => card.CardId == id);
+            var card = _service.DeleteCard(id);
             if (card == null) return NotFound();
-            _context.Remove(card);
-            _context.SaveChanges();
             return NoContent();
         }
 
