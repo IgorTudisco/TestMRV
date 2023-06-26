@@ -1,0 +1,172 @@
+{
+	"info": {
+		"_postman_id": "d43ac386-1a76-430f-83d9-fdf91051895d",
+		"name": "TestMRV",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14124301",
+		"_collection_link": "https://tudisco.postman.co/workspace/TesteMRV~459c0dcc-cc09-4646-9d44-da2ee062cf7f/collection/14124301-d43ac386-1a76-430f-83d9-fdf91051895d?action=share&creator=14124301&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Card",
+			"item": [
+				{
+					"name": "AddCard",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"FirstName\": \"Tainá\",\r\n    \"Suburb\": \"Lorem Ipsum is simply dummy text\", \r\n    \"Category\": \"Lorem\",\r\n    \"Description\": \"Lorem Ipsum is simply dummy text of the printing and typesetting industry.\", \r\n    \"Price\": 333\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7046/card/14",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7046",
+							"path": [
+								"card",
+								"14"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListCard",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7046/card?skip=0&take=100",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7046",
+							"path": [
+								"card"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "take",
+									"value": "100"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCardById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7046/card/20",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7046",
+							"path": [
+								"card",
+								"20"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateCard",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"FirstName\": \"Tainá\",\r\n    \"Suburb\": \"Lorem Ipsum is simply dummy text of the printing and typesetting industry.\", \r\n    \"Category\": \"Lorem\",\r\n    \"Description\": \"Lorem Ipsum is simply dummy text of the printing and typesetting industry.\", \r\n    \"Price\": 333\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7046/card/5",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7046",
+							"path": [
+								"card",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdatePachCard",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/accept\",\r\n        \"value\": true\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7046/card/20",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7046",
+							"path": [
+								"card",
+								"20"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCard",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7046/card/14",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7046",
+							"path": [
+								"card",
+								"14"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
