@@ -9,16 +9,18 @@
       </li>
     </ul>
   </div>
-  <div class="card-body">
-    <div class="card" style="width: 18rem;">
-      <div class="card-body">
-        <h5 class="card-title">{{ArrayCard[0].FirstName}}</h5>
-        <h6 class="card-subtitle mb-2 text-body-secondary" style="text-align: left;">{{ArrayCard[0].Suburb}}</h6>
-        <p class="card-text" style="text-align: left;">{{ArrayCard[0].Description}}</p>
-        <p class="card-text" style="text-align: left;">{{ArrayCard[0].Price | currency}}</p>
-        <a href="#" class="card-link">Accept</a>
-        <a href="#" class="card-link">Decline</a>
+  <ng-container *ngFor="let card of ArrayCard">
+    <div class="card-body">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{card.FirstName}}</h5>
+          <h6 class="card-subtitle mb-2 text-body-secondary">{{card.Suburb}}</h6>
+          <p class="card-text">{{card.Description}}</p>
+          <p class="card-text">{{card.Price | currency}}</p>
+          <a href="#" class="card-link">Accept</a>
+          <a href="#" class="card-link">Decline</a>
+        </div>
       </div>
     </div>
-  </div>
+  </ng-container>
 </div>

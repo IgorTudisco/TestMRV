@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ReadCard } from './class/ReadCard';
-import { CardService } from './services/card.service';
+import { CardService } from '../services/card.service';
+import { ReadCard } from '../class/ReadCard';
 
 @Component({
   selector: 'app-card',
@@ -10,7 +10,8 @@ import { CardService } from './services/card.service';
 export class CardComponent implements OnInit {
 
   readCards?: ReadCard[];
-  constructor(private productService: CardService) { }
+  cardList?: ReadCard[];
+  constructor(private cardService: CardService) { }
 
   ngOnInit(): void {
   }
@@ -22,5 +23,15 @@ export class CardComponent implements OnInit {
     new ReadCard("Geovanna", "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", 333.0),
     new ReadCard("Yuri", "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", 333.0),
   ];
+
+  getCards(skip?: number, take?: number) {
+    skip = 0;
+    take = 100;
+    this.cardService.getCards(skip, take).subscribe(
+      (data: ReadCard[]) => {
+        this.cardList = data;
+      }
+    )
+  }
 
 }
