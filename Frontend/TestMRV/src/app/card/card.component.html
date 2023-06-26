@@ -1,7 +1,24 @@
-<h1>{{title}}</h1>
-
-<p>{{ArrayCard[0].FirstName}}</p>
-<p>{{ArrayCard[0].Suburb}}</p>
-<p>{{ArrayCard[0].Category}}</p>
-<p>{{ArrayCard[0].Description}}</p>
-<p>{{ArrayCard[0].Price | currency}}</p>
+<div class="card text-center">
+  <div class="card-header">
+    <ul class="nav nav-tabs card-header-tabs">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Invited</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled">Accepted</a>
+      </li>
+    </ul>
+  </div>
+  <div class="card-body">
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">{{ArrayCard[0].FirstName}}</h5>
+        <h6 class="card-subtitle mb-2 text-body-secondary" style="text-align: left;">{{ArrayCard[0].Suburb}}</h6>
+        <p class="card-text" style="text-align: left;">{{ArrayCard[0].Description}}</p>
+        <p class="card-text" style="text-align: left;">{{ArrayCard[0].Price | currency}}</p>
+        <a href="#" class="card-link">Accept</a>
+        <a href="#" class="card-link">Decline</a>
+      </div>
+    </div>
+  </div>
+</div>

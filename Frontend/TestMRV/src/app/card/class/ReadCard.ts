@@ -1,4 +1,4 @@
-export class Card {
+export class ReadCard {
 
   FirstName: string;
   Suburb: string;
